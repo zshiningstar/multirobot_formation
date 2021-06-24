@@ -1,3 +1,4 @@
+<!-- -->
 <launch>
 	<!-- 设置机器人模型路径参数 -->
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find ares_description)/urdf/ares_laser.xacro'" /> 
