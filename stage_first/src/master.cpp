@@ -16,7 +16,7 @@ double mul =1;
 ros::Publisher velocity_publisher;
 
 //Function declerations of move and rotate
-//void move(double speed, double distance, bool isForward);
+void move(double speed, double distance, bool isForward);
 void rotate (double angular_speed, double relative_angle, bool clockwise);
 
 //Call back decleration for the laser messages
@@ -53,36 +53,36 @@ int main(int argc, char **argv)
  *  makes the robot move with a certain linear velocity, for 
  *  a certain distance either forward or backward  
  */
-//void move(double speed, double distance, bool isForward){
-//   geometry_msgs::Twist vel_msg;
-//   //set a random linear velocity in the x-axis and check condition for the direction
-//   if (isForward)
-//	   vel_msg.linear.x =fabs(speed);
-//   else
-//	   vel_msg.linear.x =-fabs(speed);
+void move(double speed, double distance, bool isForward){
+   geometry_msgs::Twist vel_msg;
+   //set a random linear velocity in the x-axis and check condition for the direction
+   if (isForward)
+	   vel_msg.linear.x =fabs(speed);
+   else
+	   vel_msg.linear.x =-fabs(speed);
 
-//   vel_msg.linear.y =0;
-//   vel_msg.linear.z =0;
-//   //set a random angular velocity in the y-axis
-//   vel_msg.angular.x = 0;
-//   vel_msg.angular.y = 0;
-//   vel_msg.angular.z =0;
+   vel_msg.linear.y =0;
+   vel_msg.linear.z =0;
+   //set a random angular velocity in the y-axis
+   vel_msg.angular.x = 0;
+   vel_msg.angular.y = 0;
+   vel_msg.angular.z =0;
 
-//   double t0 = ros::Time::now().toSec();
-//   double current_distance = 0.0;
-//   ros::Rate loop_rate(100);
-//   //Condition to terminate if moved to the distance specified
-//   do{
-//	   velocity_publisher.publish(vel_msg);
-//	   double t1 = ros::Time::now().toSec();
-//	   current_distance = speed * (t1-t0);
-//	   ros::spinOnce();
-//	   loop_rate.sleep();
-//   }while(current_distance<distance);
-//   vel_msg.linear.x =0;
-//   //velocity_publisher.publish(vel_msg);
+   double t0 = ros::Time::now().toSec();
+   double current_distance = 0.0;
+   ros::Rate loop_rate(100);
+   //Condition to terminate if moved to the distance specified
+   do{
+	   velocity_publisher.publish(vel_msg);
+	   double t1 = ros::Time::now().toSec();
+	   current_distance = speed * (t1-t0);
+	   ros::spinOnce();
+	   loop_rate.sleep();
+   }while(current_distance<distance);
+   vel_msg.linear.x =0;
+   //velocity_publisher.publish(vel_msg);
 
-//}
+}
 
 /**
  *  makes the robot turn with a certain angular velocity, for 

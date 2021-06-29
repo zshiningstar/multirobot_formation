@@ -72,7 +72,7 @@ int main(int argc, char** argv){
     geometry_msgs::Twist vel_msg;
     vel_msg.angular.z = 4.0 * atan2(transformSM.getOrigin().y(),
                                    transformSM.getOrigin().x());
-    vel_msg.linear.x = 0.5 * sqrt(pow(transformSM.getOrigin().x(), 2) +
+    vel_msg.linear.x = 0.1 * sqrt(pow(transformSM.getOrigin().x(), 2) +
                                   pow(transformSM.getOrigin().y(), 2));
     slave_vel.publish(vel_msg);
     ros::spinOnce();
